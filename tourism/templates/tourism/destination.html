@@ -1,0 +1,26 @@
+{% extends 'tourism/base2.html' %}
+
+{% block title %} Destinations {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 style="font-size:20px; font-weight: bold; text-align: center;" class="detail">Check out our Destinations</h1>
+    <hr>
+    {% for destination in destinations %}
+        <div class="panel panel-default col-md-4">
+            <a href="{{destination.get_absolute_url}}">
+                <div class="panel-body img">
+                     <img src="{{destination.image.url}}" class="img-responsive zoom">
+                </div>
+            </a>
+            <hr>
+            <div class="panel-header">
+                <h4 class="det"> {{destination.name}}</h4>
+            </div>
+            <div class="panel-header">
+              <h5 class="det money" id="price">Ksh {{destination.charges}}</h5>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{% endblock %}

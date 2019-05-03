@@ -1,0 +1,52 @@
+{% extends 'tourism/base3.html' %}
+
+{% block title %} Expenses {% endblock %}
+
+{% block body %}
+{% load static %}
+<link href="{% static 'tourism/jquerui/jquery-ui.css' %}" rel='stylesheet' type='text/css'/>
+<script src="{% static 'tourism/bootstrap/js/jquery.js' %}"></script>
+<script src="{% static 'tourism/jquerui/jquery-ui.js' %}"></script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2019",
+      // You can put more options here.
+
+    });
+  });
+ </script>
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="container">
+                <div class="panel panel-default panelia col-md-12">
+                    <div class="panel-body pan-bod">
+                        <h2 class="message">{{ message|safe }} </h2>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <p class="detail">Please fill out the following form to help us estimate your expense and generate a travel schedule for you.</p>
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form action="." class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                {% include 'tourism/form_template2.html'%}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="Submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'tourism/base2.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="detail" style="font-size: 20px;">Dashboard</h1>
+    <hr>
+    <p class="detail">Welcome to your dashboard. You can <a href="{% url 'account:edit' %}">edit your account</a>
+        or <a href="{% url 'password_change' %}">change your password.</a>
+    </p>
+    <h1 style="text-align: center; font-weight: bold; font-size: 20px; margin-top: 20px;">Generated Travel Schedule</h1>
+    {% for expense in expenses %}
+    <div class="row mt centered">
+			<div class="col-lg-offset-1 table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Start Tour Date</th>
+                            <td>{{expense.tour_start_date}}</td>
+                        </tr>
+                        <tr>
+                            <th>End Tour Date</th>
+                            <td>{{expense.tour_end_date}}</td>
+                        </tr>
+                        <tr>
+                            <th>Number of people</th>
+                            <td>{{expense.number_of_people}}</td>
+                        </tr>
+                        <tr>
+                            <th>Activity</th>
+                            <td>{{expense.activity}}</td>
+                        </tr>
+                         <tr>
+                            <th>Destination</th>
+                            <td>{{expense.destination}}</td>
+                        </tr>
+                    </thead>
+                </table>
+
+                <P style="font-weight:bold; font-size: 20px"><a href="{%  url 'account:expend' expense.id %}">Check my expenditure</a></P>
+			</div>
+    </div>
+    {% empty %}
+    <p style="font-style: italic; text-align:center">You have no travel schedule at the moment</p>
+    {% endfor %}
+</div>
+{% endblock %}

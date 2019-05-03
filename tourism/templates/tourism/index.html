@@ -1,0 +1,65 @@
+{% extends 'tourism/base.html' %}
+
+{% block title %} Index {% endblock %}
+
+{% block body %}
+{% load static %}
+<div class="container">
+    <div class="col-md-12">
+            <div class="carousel slide" data-ride="carousel" >
+                <div class="carousel-inner" id="featured">
+                    <div class="item active mi">
+                        <img src="{% static 'tourism/images/one.jpg'%}" class="img-responsive">
+                    </div>
+                    <div class="item mi">
+                        <img src="{% static 'tourism/images/two.jpg'%}" class="img-responsive">
+                    </div>
+                    <div class="item mi">
+                        <img src="{% static 'tourism/images/three.jpg'%}" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="find-place">
+			<div class="wrap">
+				<div class="p-h">
+					<span>FIND YOUR</span>
+					<label>HOLYDAYS</label>
+				</div>
+				<!---strat-date-piker---->
+				  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+				  <script>
+				  $(function() {
+				    $( "#datepicker" ).datepicker();
+				  });
+				  </script>
+				<!---/End-date-piker---->
+				<div class="p-ww">
+					<form>
+						<span id="heading"> Let us help you! Click <a href="{% url 'tourism:suggestion' %}"><span class="glyphicon glyphicon-hand-right"></span>Here</a> for more info</span>
+					</form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+    </div>
+    <hr>
+    <h3 id="subheader">Check Out Our Best Destinations</h3>
+    <hr>
+    {% for destination in destinations %}
+        <div class="panel panel-default col-md-4">
+            <a href="{{destination.get_absolute_url}}">
+                <div class="panel-body img">
+                     <img src="{{destination.image.url}}" class="img-responsive zoom">
+                </div>
+            </a>
+            <hr>
+            <div class="panel-header">
+                <h4 class="det"> {{destination.name}}</h4>
+            </div>
+            <div class="panel-header">
+              <h5 class="det money" id="price">Ksh {{destination.charges}}</h5>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+{% endblock %}

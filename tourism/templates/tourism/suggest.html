@@ -1,0 +1,48 @@
+{% extends 'tourism/base2.html' %}
+
+{% block title %} Suggestions {% endblock %}
+
+{% block body %}
+{% load bootstrap4 %}
+    <div class="container">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="container">
+                    <div class="panel panel-default panelia col-md-12">
+                        <div class="panel-body pan-bod">
+                            <h2 class="message">{{ message|safe }} </h2>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+        <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 style="font-size:18px;">Hello {{request.user.username}}, your suggestions will appear here <span class="glyphicon glyphicon-hand-down"></span></h1>
+                    <hr>
+                    {% for suggestion in suggestions %}
+                    <ul>
+                     <li><a href="{{suggestion.get_absolute_url}}">{{suggestion.name}}</a></li>
+                    </ul>
+                    {% endfor %}
+                </div>
+        </div>
+        <hr>
+        <p>Please fill out the following form to help us suggest you the best places</p>
+        <hr>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="." class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        {% include 'tourism/form_template.html'%}
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <button type="Submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

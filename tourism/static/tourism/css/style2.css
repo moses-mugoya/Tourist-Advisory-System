@@ -1,0 +1,59 @@
+#featured{
+margin-bottom: 20px;
+}
+
+#heading{
+ font-size: 28px;
+ color:white;
+ font-weight: bold;
+}
+
+#subheader{
+ text-align: center;
+ font-size: 27px;
+ color: green;
+ font-weight: bold;
+}
+
+.detail{
+margin-top:20px;
+
+}
+
+.money{
+color: green;
+margin:8px;
+}
+
+.tile{
+font-weight: bold;
+font-size: 20px;
+}
+
+.zoom{
+  transition: transform .2s;
+}
+
+.zoom:hover{
+transform: scale(1.155);
+}
+
+.panelia{
+margin-top:5px;
+background-color:#5cb85c;
+padding-bottom: 5px;
+}
+
+.pan-bod{
+padding:0px;
+}
+
+
+.mt {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.centered {
+    text-align: center;
+}
